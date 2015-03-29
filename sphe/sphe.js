@@ -13,9 +13,6 @@ var uuid = require('node-uuid');
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var fs = require('fs');
-var ss = require('socket.io-stream');
-
 
 var config = require('./config.json');
 
@@ -23,8 +20,6 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
-var videoStream = [];
 
 server.listen(parseInt(config.port), config.host);
 
@@ -43,12 +38,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-io.of('/stream_video').on('connection', function(socket) {
-  ss(socket).on('send_video', function(stream, data) {
-      var token = data.token;
-      // var filename = path.basename(data.name);
-      stream.pipe(fs.createWriteStream("stream.mp4"));
-      console.log("Video being streamed...");
+
+io.on('connection', function (socket) {
+  socket.on('play_horn', function (data) {
+    console.log(data);
+    socket.emit('receive_horn');
   });
 });
 

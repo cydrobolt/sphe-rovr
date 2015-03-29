@@ -10,3 +10,13 @@ webrtc.on('readyToCall', function () {
   // you can name it anything
   webrtc.joinRoom('spherovr-token-room' + token);
 });
+var horn = $("#horn")[0];
+
+var socket = io(location.host);
+socket.on('receive_horn', function (data) {
+    horn.play();
+});
+
+function play_horn() {
+    socket.emit('play_horn');
+}
