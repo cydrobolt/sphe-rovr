@@ -19,3 +19,6 @@ socket.on('receive_horn', function (data) {
 function play_horn() {
     socket.emit('play_horn');
 }
+shortcut.add("Space",function() {
+   play_horn();
+});
