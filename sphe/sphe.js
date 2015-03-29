@@ -42,7 +42,7 @@ app.use(cookieParser());
 io.on('connection', function (socket) {
   socket.on('play_horn', function (data) {
     console.log(data);
-    socket.emit('receive_horn');
+    socket.broadcast.emit('receive_horn');
   });
 });
 
