@@ -1,0 +1,17 @@
+extends ./layout.jade
+block content
+    script
+        | var token = "#{token}";
+    script(src="//simplewebrtc.com/latest.js")
+    script(src="sphe.js")
+
+
+    div(style="text-align: center")
+        h1
+            | rovr stream for token
+            code(class="token") #{token}
+        br
+        a(href="/logout", class="btn btn-danger btn-xs") Reset Token
+        br
+        br
+        div(id="remotesVideos")

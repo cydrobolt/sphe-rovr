@@ -1,1 +1,1 @@
-VR Rover.
+VR Rover

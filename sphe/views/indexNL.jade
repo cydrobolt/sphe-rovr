@@ -1,0 +1,10 @@
+extends ./layout.jade
+block content
+    div(style="text-align: center")
+        h1 Sphe-rovr
+        b Please input your rovr token and plug in your Oculus to continue.
+        form(action="/process_token", method="POST", style='margin:0 auto; width: 450px')
+            br
+            input(type="text", name="token", class="form-control", style="width: 450px", placeholder="110ec58a-a0f2-4ac4-8393-c866d813b8d1")
+            br
+            input(type="submit", class="btn btn-success", value="Connect to rovr")
